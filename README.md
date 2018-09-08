@@ -33,5 +33,5 @@
   The strategy is to plot states downward and when a node has more than one connection rotate
   from down, to right, to left, ...
   It is simple but it works pretty well.  In any event, the result is a text file which a human can tweak
-  is needed.
+  if needed.
 
