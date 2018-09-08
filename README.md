@@ -16,7 +16,7 @@
      	StateMachineExporter.exportToPlantUML(machine, null, filename);
  ```
  
- See the test state machine setup in 'src/test' for a full working demo.
+ See the test state machine setup in [src/test](https://github.com/nofacepress/spring-statemachine-plantuml-exporter/tree/master/src/test/java/com/nofacepress/test/statemachine/example) for a full working demo.
  
 
 ## Official Source Repository
