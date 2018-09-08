@@ -1,1 +1,1 @@
-# spring-statemachine-planuml-exporter
+# spring-statemachine-plantuml-exporter
