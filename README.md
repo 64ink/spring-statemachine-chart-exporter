@@ -16,7 +16,7 @@
      	StateMachineExporter.exportToPlantUML(machine, null, filename);
  ```
  
- See the test state machine setup in 'src/test' for a full working demo.
+ See the test state machine setup in [src/test](https://github.com/nofacepress/spring-statemachine-plantuml-exporter/tree/master/src/test/java/com/nofacepress/test/statemachine/example) for a full working demo.
  
 
 ## Official Source Repository
@@ -33,5 +33,6 @@
   The strategy is to plot states downward and when a node has more than one connection rotate
   from down, to right, to left, ...
   It is simple but it works pretty well.  In any event, the result is a text file which a human can tweak
-  is needed.
+  if needed.
 
+Build status: [![build_status](https://travis-ci.org/phillip-kruger/apiee.svg?branch=master)](https://travis-ci.org/phillip-kruger/apiee)
