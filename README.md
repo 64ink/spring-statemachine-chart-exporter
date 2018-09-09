@@ -35,3 +35,4 @@
   It is simple but it works pretty well.  In any event, the result is a text file which a human can tweak
   if needed.
 
+Build status: [![build_status](https://travis-ci.org/phillip-kruger/apiee.svg?branch=master)](https://travis-ci.org/phillip-kruger/apiee)
