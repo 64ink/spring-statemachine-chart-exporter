@@ -6,7 +6,7 @@
 
 	<groupId>com.nofacepress</groupId>
 	<artifactId>spring-statemachine-plantuml-exporter</artifactId>
-	<version>0.2.1</version>
+	<version>0.2.2</version>
 	<packaging>jar</packaging>
 
 	<name>spring-statemachine-plantuml-exporter</name>
