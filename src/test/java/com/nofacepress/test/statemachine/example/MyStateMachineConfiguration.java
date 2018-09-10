@@ -26,38 +26,24 @@ import org.springframework.statemachine.config.builders.StateMachineTransitionCo
 
 @Configuration
 @EnableStateMachine
-public class MyStateMachineConfiguration 
-  extends StateMachineConfigurerAdapter<MyStates, MyEvents> {
- 
-    @Override
-    public void configure(StateMachineStateConfigurer<MyStates, MyEvents> states) 
-      throws Exception {
-  
-        states
-          .withStates()
-          .initial(MyStates.STATE_A)
-          .end(MyStates.STATE_F)
-          .states(
-            new HashSet<MyStates>(Arrays.asList(MyStates.STATE_B, MyStates.STATE_C, MyStates.STATE_D, MyStates.STATE_E)));
- 
-    }
- 
-    @Override
-    public void configure(
-      StateMachineTransitionConfigurer<MyStates, MyEvents> transitions) 
-      throws Exception {
-  
-        transitions.withExternal()
-          .source(MyStates.STATE_A).target(MyStates.STATE_B).event(MyEvents.EVENT_1).and()
-          .withExternal()
-          .source(MyStates.STATE_B).target(MyStates.STATE_E).event(MyEvents.EVENT_3).and()
-          .withExternal()
-          .source(MyStates.STATE_B).target(MyStates.STATE_C).event(MyEvents.EVENT_2).and()
-          .withExternal()
-          .source(MyStates.STATE_D).target(MyStates.STATE_B).event(MyEvents.EVENT_1).and()
-          .withExternal()
-          .source(MyStates.STATE_D).target(MyStates.STATE_E).event(MyEvents.EVENT_3).and()
-          .withExternal()
-          .source(MyStates.STATE_B).target(MyStates.STATE_G).event(MyEvents.EVENT_4);
-    }
+public class MyStateMachineConfiguration extends StateMachineConfigurerAdapter<MyStates, MyEvents> {
+
+	@Override
+	public void configure(StateMachineStateConfigurer<MyStates, MyEvents> states) throws Exception {
+
+		states.withStates().initial(MyStates.STATE_A).end(MyStates.STATE_F).states(new HashSet<MyStates>(
+				Arrays.asList(MyStates.STATE_B, MyStates.STATE_C, MyStates.STATE_D, MyStates.STATE_E)));
+
+	}
+
+	@Override
+	public void configure(StateMachineTransitionConfigurer<MyStates, MyEvents> transitions) throws Exception {
+
+		transitions.withExternal().source(MyStates.STATE_A).target(MyStates.STATE_B).event(MyEvents.EVENT_1).and()
+				.withExternal().source(MyStates.STATE_B).target(MyStates.STATE_E).event(MyEvents.EVENT_3).and()
+				.withExternal().source(MyStates.STATE_B).target(MyStates.STATE_C).event(MyEvents.EVENT_2).and()
+				.withExternal().source(MyStates.STATE_D).target(MyStates.STATE_B).event(MyEvents.EVENT_1).and()
+				.withExternal().source(MyStates.STATE_D).target(MyStates.STATE_E).event(MyEvents.EVENT_3).and()
+				.withExternal().source(MyStates.STATE_B).target(MyStates.STATE_G).event(MyEvents.EVENT_4);
+	}
 }

@@ -16,5 +16,5 @@
 package com.nofacepress.test.statemachine.example;
 
 public enum MyStates {
-	STATE_A, STATE_B, STATE_C, STATE_D, STATE_E, STATE_F, STATE_G; 
+	STATE_A, STATE_B, STATE_C, STATE_D, STATE_E, STATE_F, STATE_G;
 }

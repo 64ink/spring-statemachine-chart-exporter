@@ -5,13 +5,13 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.nofacepress</groupId>
-	<artifactId>spring-statemachine-plantuml-exporter</artifactId>
-	<version>0.2.2</version>
+	<artifactId>spring-statemachine-chart-exporter</artifactId>
+	<version>0.2.3</version>
 	<packaging>jar</packaging>
 
-	<name>spring-statemachine-plantuml-exporter</name>
-	<description>Simple exporter for Spring State Machine to plantUML format.</description>
-	<url>https://github.com/nofacepress/spring-statemachine-plantuml-exporter</url>
+	<name>spring-statemachine-chart-exporter</name>
+	<description>Simple exporter for Spring State Machine to chart format.</description>
+	<url>https://github.com/nofacepress/spring-statemachine-chart-exporter</url>
 	<organization>
 		<name>No Face Press, LLC</name>
 		<url>http://nofacepress.com</url>
@@ -23,8 +23,8 @@
 		</license>
 	</licenses>
 	<scm>
-		<connection>scm:git:https://github.com/nofacepress/spring-statemachine-plantuml-exporter</connection>
-		<url>https://github.com/nofacepress/spring-statemachine-plantuml-exporter</url>
+		<connection>scm:git:https://github.com/nofacepress/spring-statemachine-chart-exporter</connection>
+		<url>https://github.com/nofacepress/spring-statemachine-chart-exporter</url>
 	</scm>
 	<developers>
 		<developer>
@@ -52,6 +52,11 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.nofacepress</groupId>
+			<artifactId>csv-4180</artifactId>
+			<version>0.2.6</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.statemachine</groupId>
 			<artifactId>spring-statemachine-core</artifactId>
@@ -130,13 +135,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifest>
-							<mainClass>com.someclass.Main</mainClass>
-						</manifest>
-					</archive>
-				</configuration>
 			</plugin>
 		</plugins>
 

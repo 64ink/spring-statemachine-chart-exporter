@@ -25,3 +25,5 @@
 /.nb-gradle/
 /statemachine.plantuml
 /settings.xml
+/statemachine.scxml
+/statemachine-lucid.csv

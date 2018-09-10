@@ -17,26 +17,38 @@ package com.nofacepress.test.statemachine.example;
 
 import java.io.IOException;
 
+import javax.xml.stream.XMLStreamException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.statemachine.StateMachine;
 
-import com.nofacepress.statemachine.plantuml.StateMachineExporter;
+import com.nofacepress.statemachine.exporter.StateMachineLucidChartExporter;
+import com.nofacepress.statemachine.exporter.StateMachinePlantUMLExporter;
+import com.nofacepress.statemachine.exporter.StateMachineSCXMLExporter;
 
 @SpringBootApplication
 public class ExportStateMachine {
-	
+
 	@Autowired
-	ExportStateMachine(StateMachine<?, ?> machine) throws IOException {
+	ExportStateMachine(StateMachine<?, ?> machine) throws IOException, XMLStreamException {
 		String filename = "statemachine.plantuml";
-    	StateMachineExporter.exportToPlantUML(machine, null, filename);
-    	System.out.println("Saved state machine to " + filename);
-    	System.exit(0);
+		StateMachinePlantUMLExporter.export(machine, null, filename);
+		System.out.println("Saved state machine to " + filename);
+
+		filename = "statemachine.scxml";
+		StateMachineSCXMLExporter.export(machine, filename);
+		System.out.println("Saved state machine to " + filename);
+
+		filename = "statemachine-lucid.csv";
+		StateMachineLucidChartExporter.export(machine, "State Machine", filename);
+		System.out.println("Saved state machine to " + filename);
+
+		System.exit(0);
 	}
 
-    public static void main( String[] args )
-    {
-    	SpringApplication.run(ExportStateMachine.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(ExportStateMachine.class, args);
+	}
 }
