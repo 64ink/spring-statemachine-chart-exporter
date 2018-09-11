@@ -34,9 +34,6 @@ import com.nofacepress.statemachine.exporter.base.StateMachineBaseExporter;
 /**
  * Creates a SCXML state chart based on information probed from a Spring State
  * Machine. This was created to find errors when setting up the state machine.
- * 
- * @see http://plantuml.com/
- * @author Thomas Davis
  */
 public class StateMachineSCXMLExporter extends StateMachineBaseExporter {
 
@@ -45,9 +42,11 @@ public class StateMachineSCXMLExporter extends StateMachineBaseExporter {
 	 * Machine.
 	 * 
 	 * @param machine  the Spring StateMachine instance to probe.
+	 * @param          <S> the class for the state machine states
+	 * @param          <E> the class for the state machine events
 	 * @param filename the file to save too.
 	 * @throws IOException        on file I/O errors
-	 * @throws XMLStreamException
+	 * @throws XMLStreamException on XML stream error
 	 */
 	public static <S, E> void export(final StateMachine<S, E> machine, String filename)
 			throws IOException, XMLStreamException {
@@ -62,9 +61,11 @@ public class StateMachineSCXMLExporter extends StateMachineBaseExporter {
 	 * Machine.
 	 * 
 	 * @param machine the Spring StateMachine instance to probe.
+	 * @param         <S> the class for the state machine states
+	 * @param         <E> the class for the state machine events
 	 * @param output  the output to write to.
 	 * @throws IOException        on file I/O errors
-	 * @throws XMLStreamException
+	 * @throws XMLStreamException on XML stream error
 	 */
 	public static <S, E> void export(final StateMachine<S, E> machine, Writer output)
 			throws IOException, XMLStreamException {

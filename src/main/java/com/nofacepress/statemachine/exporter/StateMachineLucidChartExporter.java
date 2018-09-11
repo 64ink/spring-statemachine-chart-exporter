@@ -23,8 +23,6 @@ import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import javax.xml.stream.XMLStreamException;
-
 import org.springframework.statemachine.StateMachine;
 
 import com.nofacepress.csv4180.CSVWriter;
@@ -34,9 +32,6 @@ import com.nofacepress.statemachine.exporter.base.StateMachineBaseExporter;
  * Creates a Lucid Chart state chart based on information probed from a Spring
  * State Machine. This was created to find errors when setting up the state
  * machine.
- * 
- * @see http://plantuml.com/
- * @author Thomas Davis
  */
 public class StateMachineLucidChartExporter extends StateMachineBaseExporter {
 
@@ -44,13 +39,15 @@ public class StateMachineLucidChartExporter extends StateMachineBaseExporter {
 	 * Creates a Lucid Chart state chart based on information probed from a Spring
 	 * State Machine.
 	 * 
-	 * @param machine  the Spring StateMachine instance to probe.
-	 * @param filename the file to save too.
-	 * @throws IOException        on file I/O errors
-	 * @throws XMLStreamException
+	 * @param machine   the Spring StateMachine instance to probe.
+	 * @param           <S> the class for the state machine states
+	 * @param           <E> the class for the state machine events
+	 * @param pageTitle the page title.
+	 * @param filename  the file to save too.
+	 * @throws IOException on file I/O errors
 	 */
 	public static <S, E> void export(final StateMachine<S, E> machine, String pageTitle, String filename)
-			throws IOException, XMLStreamException {
+			throws IOException {
 		OutputStreamWriter f;
 		f = new OutputStreamWriter(new FileOutputStream(filename), StandardCharsets.UTF_8);
 		export(machine, pageTitle, new BufferedWriter(f));
@@ -61,13 +58,15 @@ public class StateMachineLucidChartExporter extends StateMachineBaseExporter {
 	 * Creates a Lucid Chart state chart based on information probed from a Spring
 	 * State Machine.
 	 * 
-	 * @param machine the Spring StateMachine instance to probe.
-	 * @param output  the output to write to.
-	 * @throws IOException        on file I/O errors
-	 * @throws XMLStreamException
+	 * @param machine   the Spring StateMachine instance to probe.
+	 * @param           <S> the class for the state machine states
+	 * @param           <E> the class for the state machine events
+	 * @param pageTitle the page title.
+	 * @param output    the output to write to.
+	 * @throws IOException on file I/O errors
 	 */
 	public static <S, E> void export(final StateMachine<S, E> machine, String pageTitle, Writer output)
-			throws IOException, XMLStreamException {
+			throws IOException {
 
 		List<StateInfo> lstates = analyzeStateMachine(machine);
 

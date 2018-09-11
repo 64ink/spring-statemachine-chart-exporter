@@ -31,9 +31,6 @@ import com.nofacepress.statemachine.exporter.base.StateMachineBaseExporter;
  * Creates a PlanetUML state chart based on information probed from a Spring
  * State Machine. This was created to find errors when setting up the state
  * machine.
- * 
- * @see http://plantuml.com/
- * @author Thomas Davis
  */
 public class StateMachinePlantUMLExporter extends StateMachineBaseExporter {
 
@@ -56,6 +53,8 @@ public class StateMachinePlantUMLExporter extends StateMachineBaseExporter {
 	 * State Machine.
 	 * 
 	 * @param machine  the Spring StateMachine instance to probe.
+	 * @param          <S> the class for the state machine states
+	 * @param          <E> the class for the state machine events
 	 * @param title    the title to put on the chart, null is ok for no title.
 	 * @param filename the file to save too.
 	 * @throws IOException on file I/O errors
@@ -74,6 +73,8 @@ public class StateMachinePlantUMLExporter extends StateMachineBaseExporter {
 	 * State Machine.
 	 * 
 	 * @param machine the Spring StateMachine instance to probe.
+	 * @param         <S> the class for the state machine states
+	 * @param         <E> the class for the state machine events
 	 * @param title   the title to put on the chart, null is ok for no title.
 	 * @param writer  the output to write to
 	 * @throws IOException on file I/O errors

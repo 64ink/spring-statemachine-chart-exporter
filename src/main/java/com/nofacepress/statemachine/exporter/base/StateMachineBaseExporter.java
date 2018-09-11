@@ -29,9 +29,6 @@ import org.springframework.statemachine.transition.Transition;
  * Creates a PlanetUML state chart based on information probed from a Spring
  * State Machine. This was created to find errors when setting up the state
  * machine.
- * 
- * @see http://plantuml.com/
- * @author Thomas Davis
  */
 public class StateMachineBaseExporter {
 

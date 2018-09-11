@@ -16,6 +16,16 @@
  
  Build status: [![build_status](https://travis-ci.org/phillip-kruger/apiee.svg?branch=master)](https://travis-ci.org/phillip-kruger/apiee)
  
+## Maven Setup
+
+```xml
+<dependency>
+  <groupId>com.nofacepress</groupId>
+  <artifactId>spring-statemachine-chart-exporter</artifactId>
+  <version>0.2.3</version>
+</dependency>
+```
+
 ## Getting started
  
  Using it is easy.
