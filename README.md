@@ -31,7 +31,14 @@
  Using it is easy.
  
  ```java
-     	StateMachinePlantUMLExporter.export(machine, "MY State Machine", "statemachine.plantuml");
+// PlantUML
+StateMachinePlantUMLExporter.export(machine, "MY State Machine", "statemachine.plantuml");
+     	
+// SCXML
+StateMachineSCXMLExporter.export(machine, "statemachine.scxml");
+
+// Lucid Chart
+StateMachineLucidChartExporter.export(machine, "State Machine", "statemachine-lucid.csv");
  ```
  
  See the test state machine setup in [src/test](https://github.com/nofacepress/spring-statemachine-plantuml-exporter/tree/master/src/test/java/com/nofacepress/test/statemachine/example) for a full working demo.
