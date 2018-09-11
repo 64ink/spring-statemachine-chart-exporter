@@ -22,7 +22,7 @@
 <dependency>
   <groupId>com.nofacepress</groupId>
   <artifactId>spring-statemachine-chart-exporter</artifactId>
-  <version>0.2.4</version>
+  <version>0.2.5</version>
 </dependency>
 ```
 

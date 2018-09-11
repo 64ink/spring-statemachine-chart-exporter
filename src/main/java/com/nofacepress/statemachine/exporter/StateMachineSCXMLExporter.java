@@ -76,16 +76,19 @@ public class StateMachineSCXMLExporter extends StateMachineBaseExporter {
 		XMLStreamWriter writer = factory.createXMLStreamWriter(output);
 
 		writer.writeStartDocument("UTF-8", "1.0");
+		writer.writeCharacters("\n");
 		writer.writeStartElement("scxml");
 		writer.writeAttribute("xmlns", "http://www.w3.org/2005/07/scxml");
 		writer.writeAttribute("version", "1.0");
 		writer.writeAttribute("initial", machine.getInitialState().getId().toString());
 
 		for (StateInfo source : lstates) {
+			writer.writeCharacters("\n  ");
 			writer.writeStartElement("state");
 			writer.writeAttribute("id", source.name);
 
 			for (TransitionInfo t : source.transitions) {
+				writer.writeCharacters("\n    ");
 				writer.writeStartElement("transition");
 				writer.writeAttribute("event", t.event);
 				writer.writeAttribute("target", t.target.name);
@@ -96,6 +99,7 @@ public class StateMachineSCXMLExporter extends StateMachineBaseExporter {
 		}
 
 		writer.writeEndElement();
+		writer.writeCharacters("\n");
 		writer.writeEndDocument();
 		writer.flush();
 
