@@ -58,7 +58,7 @@ StateMachineLucidChartExporter.export(machine, "State Machine", "statemachine-lu
   solve, especially for such a tiny project.
   
   The strategy is to plot states downward and when a node has more than one connection rotate
-  from down, to right, to left, ...
+  from down, to right, to left, ...  The downward precedence goes to the state with the longest path.
   It is simple but it works pretty well.  In any event, the result is a text file which a human can tweak
   if needed.
 

@@ -41,6 +41,7 @@ public class StateMachineBaseExporter {
 			t.event = event;
 			transitions.add(t);
 		}
+
 	}
 
 	protected static class StateInfoBase {
@@ -49,6 +50,17 @@ public class StateMachineBaseExporter {
 		public String name;
 		public StateQualifer qualifier = null;
 		boolean targeted = false;
+		int pathlength = -1;
+
+		public static int compare(StateInfoBase a, StateInfoBase b) {
+			if (a.qualifier == StateQualifer.initial)
+				return -1;
+			if (b.qualifier == StateQualifer.initial)
+				return 1;
+			int x = Integer.compare(b.pathlength, a.pathlength);
+			return x == 0 ? a.name.compareTo(b.name) : x;
+		}
+
 	};
 
 	protected static enum StateQualifer {
@@ -66,6 +78,24 @@ public class StateMachineBaseExporter {
 		public StateInfoBase target;
 		public String event;
 
+	}
+
+	protected static <S, E> int getPathLength(StateInfo info) {
+		if (info.pathlength < 0) {
+
+			info.pathlength = 0; // handles circular paths
+
+			int length = 0;
+			for (TransitionInfo t : info.transitions) {
+				if (t.target.qualifier != StateQualifer.initial) {
+					int l = getPathLength(StateInfo.class.cast(t.target));
+					length = (l > length) ? l : length;
+				}
+			}
+			info.pathlength = length + 1;
+
+		}
+		return info.pathlength;
 	}
 
 	protected static <S, E> List<StateInfo> analyzeStateMachine(StateMachine<S, E> machine) {
@@ -100,8 +130,17 @@ public class StateMachineBaseExporter {
 			target.targeted = true; // help of determine if this node is reachable in the normal flow
 		}
 
+		// compute path lengths, starting with the initial
+		initial.qualifier = StateQualifer.initial;
+		getPathLength(initial);
+		for (StateInfo s : stateList) {
+			if (s.pathlength < 0) {
+				getPathLength(s);
+			}
+		}
+
 		// sort for a predictable output
-		stateList.sort((a, b) -> a.name.compareTo(b.name));
+		stateList.sort((a, b) -> StateInfoBase.compare(a, b));
 		for (int i = 0; i < stateList.size(); i++) {
 			StateInfo state = stateList.get(i);
 			state.index = i;
@@ -117,7 +156,7 @@ public class StateMachineBaseExporter {
 				state.qualifier = StateQualifer.alternate;
 			}
 			// sort for a predictable output
-			state.transitions.sort((a, b) -> a.target.name.compareTo(b.target.name));
+			state.transitions.sort((a, b) -> StateInfoBase.compare(a.target, b.target));
 		}
 
 		return stateList;

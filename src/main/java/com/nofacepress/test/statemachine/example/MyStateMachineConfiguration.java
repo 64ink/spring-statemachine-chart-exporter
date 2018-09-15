@@ -19,15 +19,22 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.statemachine.StateContext;
+import org.springframework.statemachine.action.Action;
 import org.springframework.statemachine.config.EnableStateMachine;
+import org.springframework.statemachine.config.EnableStateMachineFactory;
+import org.springframework.statemachine.config.EnableWithStateMachine;
 import org.springframework.statemachine.config.StateMachineConfigurerAdapter;
 import org.springframework.statemachine.config.builders.StateMachineStateConfigurer;
 import org.springframework.statemachine.config.builders.StateMachineTransitionConfigurer;
+import org.springframework.statemachine.config.configurers.LocalTransitionConfigurer;
+import org.springframework.statemachine.config.configurers.TransitionConfigurer;
 
 @Configuration
-@EnableStateMachine
+@EnableStateMachineFactory(name = MyStateMachineConfiguration.MACHINE_NAME)
 public class MyStateMachineConfiguration extends StateMachineConfigurerAdapter<MyStates, MyEvents> {
 
+	public static final String MACHINE_NAME = "com.nofacepress.test.statemachine.example.MyStateMachineConfiguration";
 	@Override
 	public void configure(StateMachineStateConfigurer<MyStates, MyEvents> states) throws Exception {
 
@@ -36,15 +43,19 @@ public class MyStateMachineConfiguration extends StateMachineConfigurerAdapter<M
 
 	}
 
+
 	@Override
 	public void configure(StateMachineTransitionConfigurer<MyStates, MyEvents> transitions) throws Exception {
 
-		transitions.withExternal().source(MyStates.STATE_A).target(MyStates.STATE_B).event(MyEvents.EVENT_1).and()
+			
+		transitions.withExternal().source(MyStates.STATE_A).target(MyStates.STATE_B).event(MyEvents.EVENT_1)
+		.and()
+			.withExternal().source(MyStates.STATE_A).target(MyStates.STATE_A).event(MyEvents.RETRY).and()
+
 				.withExternal().source(MyStates.STATE_B).target(MyStates.STATE_E).event(MyEvents.EVENT_3).and()
 				.withExternal().source(MyStates.STATE_B).target(MyStates.STATE_C).event(MyEvents.EVENT_2).and()
 				.withExternal().source(MyStates.STATE_D).target(MyStates.STATE_B).event(MyEvents.EVENT_1).and()
 				.withExternal().source(MyStates.STATE_D).target(MyStates.STATE_E).event(MyEvents.EVENT_3).and()
-				.withExternal().source(MyStates.STATE_B).target(MyStates.STATE_G).event(MyEvents.EVENT_4).and()
-				.withExternal().source(MyStates.STATE_D).target(MyStates.STATE_A).event(MyEvents.EVENT_4);
+				.withExternal().source(MyStates.STATE_B).target(MyStates.STATE_G).event(MyEvents.EVENT_4);
 	}
 }

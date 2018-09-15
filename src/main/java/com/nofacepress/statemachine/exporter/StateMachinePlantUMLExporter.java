@@ -35,6 +35,7 @@ import com.nofacepress.statemachine.exporter.base.StateMachineBaseExporter;
 public class StateMachinePlantUMLExporter extends StateMachineBaseExporter {
 
 	protected static final class PlanetUMLConstants {
+		public static final String UP_ARROW = "-up->";
 		public static final String DOWN_ARROW = "-down->";
 		public static final String LEFT_ARROW = "-left->";
 		public static final String RIGHT_ARROW = "-right->";
@@ -83,8 +84,10 @@ public class StateMachinePlantUMLExporter extends StateMachineBaseExporter {
 
 		List<StateInfo> lstates = analyzeStateMachine(machine);
 
-		final String[] arrows = { PlanetUMLConstants.DOWN_ARROW, PlanetUMLConstants.RIGHT_ARROW,
+		final String[] arrowsFromAbove = { PlanetUMLConstants.DOWN_ARROW, PlanetUMLConstants.RIGHT_ARROW,
 				PlanetUMLConstants.LEFT_ARROW };
+		final String[] arrowsFromBelow = { PlanetUMLConstants.UP_ARROW, PlanetUMLConstants.LEFT_ARROW,
+				PlanetUMLConstants.RIGHT_ARROW };
 
 		writer.append(PlanetUMLConstants.START_UML + "\n");
 		writer.append(PlanetUMLConstants.MONOCHROME + "\n");
@@ -113,9 +116,16 @@ public class StateMachinePlantUMLExporter extends StateMachineBaseExporter {
 				writer.append(String.format("%s %s %s\n", source.id, PlanetUMLConstants.DOWN_ARROW,
 						PlanetUMLConstants.END_STATE));
 			} else {
-				int n = 0;
+				int aboveN = 0;
+				int belowN = 0;
 				for (TransitionInfo t : source.transitions) {
-					writer.append(String.format("%s %s %s : %s\n", source.id, arrows[n++ % 3], t.target.id, t.event));
+					if (t.target.index > source.index) {
+						writer.append(String.format("%s %s %s : %s\n", source.id, arrowsFromAbove[aboveN++ % 3],
+								t.target.id, t.event));
+					} else {
+						writer.append(String.format("%s %s %s : %s\n", source.id, arrowsFromBelow[belowN++ % 3],
+								t.target.id, t.event));
+					}
 				}
 			}
 		}
