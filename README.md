@@ -14,7 +14,7 @@
  
  It may also be useful for those that code first and document later.
  
- Build status: [![build_status](https://travis-ci.org/phillip-kruger/apiee.svg?branch=master)](https://travis-ci.org/phillip-kruger/apiee)
+ Build status: [![build_status](https://travis-ci.org/nofacepress/spring-statemachine-chart-exporter.svg?branch=master)](https://travis-ci.org/nofacepress/spring-statemachine-chart-exporter)
  
 ## Maven Setup
 
