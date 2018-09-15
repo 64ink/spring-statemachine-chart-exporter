@@ -119,7 +119,7 @@ public class StateMachinePlantUMLExporter extends StateMachineBaseExporter {
 				int aboveN = 0;
 				int belowN = 0;
 				for (TransitionInfo t : source.transitions) {
-					if (t.target.index > source.index) {
+					if (t.target.index >= source.index) {
 						writer.append(String.format("%s %s %s : %s\n", source.id, arrowsFromAbove[aboveN++ % 3],
 								t.target.id, t.event));
 					} else {

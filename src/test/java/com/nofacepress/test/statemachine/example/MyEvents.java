@@ -16,5 +16,5 @@
 package com.nofacepress.test.statemachine.example;
 
 public enum MyEvents {
-	EVENT_1, EVENT_2, EVENT_3, EVENT_4;
+	EVENT_1, EVENT_2, EVENT_3, EVENT_4, RETRY;
 }

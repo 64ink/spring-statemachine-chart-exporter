@@ -44,6 +44,8 @@ public class MyStateMachineConfiguration extends StateMachineConfigurerAdapter<M
 				.withExternal().source(MyStates.STATE_B).target(MyStates.STATE_C).event(MyEvents.EVENT_2).and()
 				.withExternal().source(MyStates.STATE_D).target(MyStates.STATE_B).event(MyEvents.EVENT_1).and()
 				.withExternal().source(MyStates.STATE_D).target(MyStates.STATE_E).event(MyEvents.EVENT_3).and()
+				.withExternal().source(MyStates.STATE_B).target(MyStates.STATE_D).event(MyEvents.RETRY).and()
+				.withExternal().source(MyStates.STATE_E).target(MyStates.STATE_E).event(MyEvents.RETRY).and()
 				.withExternal().source(MyStates.STATE_B).target(MyStates.STATE_G).event(MyEvents.EVENT_4).and()
 				.withExternal().source(MyStates.STATE_D).target(MyStates.STATE_A).event(MyEvents.EVENT_4);
 	}

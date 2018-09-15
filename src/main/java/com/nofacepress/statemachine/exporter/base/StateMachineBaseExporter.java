@@ -53,6 +53,7 @@ public class StateMachineBaseExporter {
 		int pathlength = -1;
 
 		public static int compare(StateInfoBase a, StateInfoBase b) {
+			if (a == b) return 0;
 			if (a.qualifier == StateQualifer.initial)
 				return -1;
 			if (b.qualifier == StateQualifer.initial)
